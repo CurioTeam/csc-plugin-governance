@@ -1,0 +1,14 @@
+coverage/
+dist/
+umd/
+node_modules/
+.idea/
+*.iml
+npm-debug.log
+*.sw*
+/out
+.DS_Store
+ganache.out
+.vscode/
+yarn-error.log
+.yalc/
