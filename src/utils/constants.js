@@ -17,6 +17,6 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 
 /* Spock URLs */
 export const LOCAL_URL = 'http://localhost:3001/v1';
-export const KOVAN_URL = 'https://api.stablecoin-app.invest-beta.curiocar.xyz/api/v1';
-export const STAGING_MAINNET_URL = 'https://api.stablecoin-app.invest-beta.curiocar.xyz/api/v1';
+export const KOVAN_URL = 'https://csc-gov-api.curiocar.xyz/api/v1';
+export const STAGING_MAINNET_URL = 'https://csc-gov-api.curiocar.xyz/api/v1';
 export const MAINNET_URL = 'https://api.stablecoin-app.curioinvest.com/api/v1';
