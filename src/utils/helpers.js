@@ -1,6 +1,12 @@
 import { createGetCurrency } from '@makerdao/currency';
 import BigNumber from 'bignumber.js';
-import { MKR, STAGING_MAINNET_URL, KOVAN_URL, MAINNET_URL } from './constants';
+import {
+  MKR,
+  STAGING_MAINNET_URL,
+  STAGING_KOVAN_URL,
+  KOVAN_URL,
+  MAINNET_URL,
+} from './constants';
 
 /**
  * @desc get network name
@@ -36,7 +42,7 @@ export const netIdtoSpockUrlStaging = (id) => {
     case 1:
       return STAGING_MAINNET_URL;
     case 42:
-      return KOVAN_URL;
+      return STAGING_KOVAN_URL;
     default:
       return STAGING_MAINNET_URL;
   }

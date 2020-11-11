@@ -61,7 +61,7 @@ var netIdtoSpockUrlStaging = function netIdtoSpockUrlStaging(id) {
       return _constants.STAGING_MAINNET_URL;
 
     case 42:
-      return _constants.KOVAN_URL;
+      return _constants.STAGING_KOVAN_URL;
 
     default:
       return _constants.STAGING_MAINNET_URL;
