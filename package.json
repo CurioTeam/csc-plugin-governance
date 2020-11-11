@@ -1,7 +1,7 @@
 {
   "name": "csc-plugin-governance",
   "description": "A javascript plugin for adding Curio Stablecoin governance support to dapps.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",

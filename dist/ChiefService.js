@@ -59,15 +59,9 @@ var _contractInfo = _interopRequireDefault(
   require('../contracts/contract-info.json')
 );
 
-function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it;
+function _createForOfIteratorHelper(o) {
   if (typeof Symbol === 'undefined' || o[Symbol.iterator] == null) {
-    if (
-      Array.isArray(o) ||
-      (it = _unsupportedIterableToArray(o)) ||
-      (allowArrayLike && o && typeof o.length === 'number')
-    ) {
-      if (it) o = it;
+    if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {
       var i = 0;
       var F = function F() {};
       return {
@@ -86,7 +80,8 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
       'Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
     );
   }
-  var normalCompletion = true,
+  var it,
+    normalCompletion = true,
     didErr = false,
     err;
   return {
@@ -167,7 +162,7 @@ function _objectSpread(target) {
 
 function _createSuper(Derived) {
   var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
+  return function () {
     var Super = (0, _getPrototypeOf2['default'])(Derived),
       result;
     if (hasNativeReflectConstruct) {
@@ -839,58 +834,7 @@ var ChiefService = /*#__PURE__*/ (function (_LocalService) {
               );
             });
         });
-      },
-    },
-    {
-      key: 'getAllSlates',
-      value: (function () {
-        var _getAllSlates = (0, _asyncToGenerator2['default'])(
-          /*#__PURE__*/ _regenerator['default'].mark(function _callee8() {
-            var chiefAddress, web3Service, netId, networkName, etches;
-            return _regenerator['default'].wrap(
-              function _callee8$(_context8) {
-                while (1) {
-                  switch ((_context8.prev = _context8.next)) {
-                    case 0:
-                      chiefAddress = this._chiefContract().address;
-                      web3Service = this.get('web3');
-                      netId = web3Service.network;
-                      networkName = (0, _helpers.netIdToName)(netId);
-                      _context8.next = 6;
-                      return web3Service.getPastLogs({
-                        fromBlock: chiefInfo.inception_block[networkName],
-                        toBlock: 'latest',
-                        address: chiefAddress,
-                        topics: [chiefInfo.events.etch],
-                      });
-
-                    case 6:
-                      etches = _context8.sent;
-                      return _context8.abrupt(
-                        'return',
-                        etches.map(function (e) {
-                          return e.topics[1];
-                        })
-                      );
-
-                    case 8:
-                    case 'end':
-                      return _context8.stop();
-                  }
-                }
-              },
-              _callee8,
-              this
-            );
-          })
-        );
-
-        function getAllSlates() {
-          return _getAllSlates.apply(this, arguments);
-        }
-
-        return getAllSlates;
-      })(), // Internal --------------------------------------------
+      }, // Internal --------------------------------------------
     },
     {
       key: '_chiefContract',

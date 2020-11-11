@@ -90,7 +90,7 @@ function _objectSpread(target) {
 
 function _createSuper(Derived) {
   var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
+  return function () {
     var Super = (0, _getPrototypeOf2['default'])(Derived),
       result;
     if (hasNativeReflectConstruct) {
@@ -917,7 +917,6 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
                         winner: null,
                         totalMkrParticipation: totalMkrParticipation,
                         options: {},
-                        numVoters: votes.length,
                       };
                       defaultOptionObj = {
                         firstChoice: (0, _bignumber['default'])(0),
@@ -1007,9 +1006,7 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
                           _slicedToArray2['default'])(_filteredOptions$redu, 1),
                           optionToEliminate = _filteredOptions$redu2[0];
 
-                        tally.options[optionToEliminate].eliminated = true;
-                        tally.options[optionToEliminate].transfer = (0,
-                        _bignumber['default'])(0); // a vote needs to be moved if...
+                        tally.options[optionToEliminate].eliminated = true; // a vote needs to be moved if...
                         // 1) it's currently for the eliminated candidate
                         // 2) there's another choice further down in the voter's preference list
 
@@ -1034,6 +1031,7 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
                           }); // move votes to the next choice on their preference list
 
                         votesToBeMoved.forEach(function (vote) {
+                          var prevChoice = votes[vote.index].choice;
                           votes[vote.index].choice = votes[
                             vote.index
                           ].ballot.pop();
@@ -1045,6 +1043,10 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
                           _bignumber['default'])(
                             tally.options[votes[vote.index].choice].transfer
                           ).plus(vote.mkrSupport || 0);
+                          tally.options[prevChoice].transfer = (0,
+                          _bignumber['default'])(
+                            tally.options[prevChoice].transfer
+                          ).minus(vote.mkrSupport || 0);
                         }); // look for a candidate with the majority
 
                         Object.entries(tally.options).forEach(function (_ref5) {

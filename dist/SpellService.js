@@ -59,7 +59,7 @@ var _helpers = require('./utils/helpers');
 
 function _createSuper(Derived) {
   var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
+  return function () {
     var Super = (0, _getPrototypeOf2['default'])(Derived),
       result;
     if (hasNativeReflectConstruct) {

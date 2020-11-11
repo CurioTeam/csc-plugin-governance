@@ -10,27 +10,6 @@
   },
   {
     "constant": false,
-    "inputs": [{ "name": "pollIds", "type": "uint256[]" }],
-    "name": "withdrawPoll",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      { "name": "pollIds", "type": "uint256[]" },
-      { "name": "optionIds", "type": "uint256[]" }
-    ],
-    "name": "vote",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
     "inputs": [
       { "name": "pollId", "type": "uint256" },
       { "name": "optionId", "type": "uint256" }
