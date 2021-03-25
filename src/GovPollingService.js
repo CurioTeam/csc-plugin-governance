@@ -172,32 +172,36 @@ export default class GovPollingService extends PrivateService {
   }
 
   async getMkrWeightFromChain(address) {
-    const { hasProxy, voteProxy } = await this.get('voteProxy').getVoteProxy(
-      address
-    );
+    // const { hasProxy, voteProxy } = await this.get('voteProxy').getVoteProxy(
+    //   address
+    // );
     let balancePromises = [
       this.get('token').getToken(MKR).balanceOf(address),
-      this.get('chief').getNumDeposits(address),
+      // this.get('chief').getNumDeposits(address),
     ];
-    if (hasProxy) {
-      const otherAddress =
-        address.toLowerCase() === voteProxy.getHotAddress().toLowerCase()
-          ? voteProxy.getColdAddress()
-          : voteProxy.getHotAddress();
-      balancePromises = balancePromises.concat([
-        this.get('token').getToken(MKR).balanceOf(otherAddress),
-        this.get('chief').getNumDeposits(otherAddress),
-        this.get('chief').getNumDeposits(voteProxy.getProxyAddress()),
-      ]);
-    }
+    // if (hasProxy) {
+    //   const otherAddress =
+    //     address.toLowerCase() === voteProxy.getHotAddress().toLowerCase()
+    //       ? voteProxy.getColdAddress()
+    //       : voteProxy.getHotAddress();
+    //   balancePromises = balancePromises.concat([
+    //     this.get('token').getToken(MKR).balanceOf(otherAddress),
+    //     this.get('chief').getNumDeposits(otherAddress),
+    //     this.get('chief').getNumDeposits(voteProxy.getProxyAddress()),
+    //   ]);
+    // }
     const balances = await Promise.all(balancePromises);
     const total = balances.reduce((total, num) => total.plus(num), MKR(0));
     return {
       mkrBalance: balances[0],
-      chiefBalance: balances[1],
-      linkedMkrBalance: hasProxy ? balances[2] : null,
-      linkedChiefBalance: hasProxy ? balances[3] : null,
-      proxyChiefBalance: hasProxy ? balances[4] : null,
+      // chiefBalance: balances[1],
+      // linkedMkrBalance: hasProxy ? balances[2] : null,
+      // linkedChiefBalance: hasProxy ? balances[3] : null,
+      // proxyChiefBalance: hasProxy ? balances[4] : null,
+      chiefBalance: null,
+      linkedMkrBalance: null,
+      linkedChiefBalance: null,
+      proxyChiefBalance: null,
       total,
     };
   }
