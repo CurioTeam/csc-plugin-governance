@@ -7,12 +7,12 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = void 0;
 
-var _slicedToArray2 = _interopRequireDefault(
-  require('@babel/runtime/helpers/slicedToArray')
-);
-
 var _regenerator = _interopRequireDefault(
   require('@babel/runtime/regenerator')
+);
+
+var _slicedToArray2 = _interopRequireDefault(
+  require('@babel/runtime/helpers/slicedToArray')
 );
 
 var _asyncToGenerator2 = _interopRequireDefault(
@@ -59,9 +59,15 @@ var _contractInfo = _interopRequireDefault(
   require('../contracts/contract-info.json')
 );
 
-function _createForOfIteratorHelper(o) {
+function _createForOfIteratorHelper(o, allowArrayLike) {
+  var it;
   if (typeof Symbol === 'undefined' || o[Symbol.iterator] == null) {
-    if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {
+    if (
+      Array.isArray(o) ||
+      (it = _unsupportedIterableToArray(o)) ||
+      (allowArrayLike && o && typeof o.length === 'number')
+    ) {
+      if (it) o = it;
       var i = 0;
       var F = function F() {};
       return {
@@ -80,8 +86,7 @@ function _createForOfIteratorHelper(o) {
       'Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
     );
   }
-  var it,
-    normalCompletion = true,
+  var normalCompletion = true,
     didErr = false,
     err;
   return {
@@ -162,7 +167,7 @@ function _objectSpread(target) {
 
 function _createSuper(Derived) {
   var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function () {
+  return function _createSuperInternal() {
     var Super = (0, _getPrototypeOf2['default'])(Derived),
       result;
     if (hasNativeReflectConstruct) {
@@ -180,7 +185,9 @@ function _isNativeReflectConstruct() {
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === 'function') return true;
   try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    Boolean.prototype.valueOf.call(
+      Reflect.construct(Boolean, [], function () {})
+    );
     return true;
   } catch (e) {
     return false;

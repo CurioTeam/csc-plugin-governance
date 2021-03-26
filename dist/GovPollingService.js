@@ -7,6 +7,10 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = void 0;
 
+var _regenerator = _interopRequireDefault(
+  require('@babel/runtime/regenerator')
+);
+
 var _typeof2 = _interopRequireDefault(require('@babel/runtime/helpers/typeof'));
 
 var _slicedToArray2 = _interopRequireDefault(
@@ -15,10 +19,6 @@ var _slicedToArray2 = _interopRequireDefault(
 
 var _defineProperty2 = _interopRequireDefault(
   require('@babel/runtime/helpers/defineProperty')
-);
-
-var _regenerator = _interopRequireDefault(
-  require('@babel/runtime/regenerator')
 );
 
 var _asyncToGenerator2 = _interopRequireDefault(
@@ -90,7 +90,7 @@ function _objectSpread(target) {
 
 function _createSuper(Derived) {
   var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function () {
+  return function _createSuperInternal() {
     var Super = (0, _getPrototypeOf2['default'])(Derived),
       result;
     if (hasNativeReflectConstruct) {
@@ -108,7 +108,9 @@ function _isNativeReflectConstruct() {
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === 'function') return true;
   try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    Boolean.prototype.valueOf.call(
+      Reflect.construct(Boolean, [], function () {})
+    );
     return true;
   } catch (e) {
     return false;
@@ -676,68 +678,53 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
           /*#__PURE__*/ _regenerator['default'].mark(function _callee10(
             address
           ) {
-            var _yield$this$get$getVo,
-              hasProxy,
-              voteProxy,
-              balancePromises,
-              otherAddress,
-              balances,
-              total;
-
+            var balancePromises, balances, total;
             return _regenerator['default'].wrap(
               function _callee10$(_context10) {
                 while (1) {
                   switch ((_context10.prev = _context10.next)) {
                     case 0:
-                      _context10.next = 2;
-                      return this.get('voteProxy').getVoteProxy(address);
-
-                    case 2:
-                      _yield$this$get$getVo = _context10.sent;
-                      hasProxy = _yield$this$get$getVo.hasProxy;
-                      voteProxy = _yield$this$get$getVo.voteProxy;
+                      // const { hasProxy, voteProxy } = await this.get('voteProxy').getVoteProxy(
+                      //   address
+                      // );
                       balancePromises = [
                         this.get('token')
                           .getToken(_constants.MKR)
-                          .balanceOf(address),
-                        this.get('chief').getNumDeposits(address),
-                      ];
+                          .balanceOf(address), // this.get('chief').getNumDeposits(address),
+                      ]; // if (hasProxy) {
+                      //   const otherAddress =
+                      //     address.toLowerCase() === voteProxy.getHotAddress().toLowerCase()
+                      //       ? voteProxy.getColdAddress()
+                      //       : voteProxy.getHotAddress();
+                      //   balancePromises = balancePromises.concat([
+                      //     this.get('token').getToken(MKR).balanceOf(otherAddress),
+                      //     this.get('chief').getNumDeposits(otherAddress),
+                      //     this.get('chief').getNumDeposits(voteProxy.getProxyAddress()),
+                      //   ]);
+                      // }
 
-                      if (hasProxy) {
-                        otherAddress =
-                          address.toLowerCase() ===
-                          voteProxy.getHotAddress().toLowerCase()
-                            ? voteProxy.getColdAddress()
-                            : voteProxy.getHotAddress();
-                        balancePromises = balancePromises.concat([
-                          this.get('token')
-                            .getToken(_constants.MKR)
-                            .balanceOf(otherAddress),
-                          this.get('chief').getNumDeposits(otherAddress),
-                          this.get('chief').getNumDeposits(
-                            voteProxy.getProxyAddress()
-                          ),
-                        ]);
-                      }
-
-                      _context10.next = 9;
+                      _context10.next = 3;
                       return Promise.all(balancePromises);
 
-                    case 9:
+                    case 3:
                       balances = _context10.sent;
                       total = balances.reduce(function (total, num) {
                         return total.plus(num);
                       }, (0, _constants.MKR)(0));
                       return _context10.abrupt('return', {
                         mkrBalance: balances[0],
-                        chiefBalance: balances[1],
-                        linkedMkrBalance: hasProxy ? balances[2] : null,
-                        linkedChiefBalance: hasProxy ? balances[3] : null,
-                        proxyChiefBalance: hasProxy ? balances[4] : null,
+                        // chiefBalance: balances[1],
+                        // linkedMkrBalance: hasProxy ? balances[2] : null,
+                        // linkedChiefBalance: hasProxy ? balances[3] : null,
+                        // proxyChiefBalance: hasProxy ? balances[4] : null,
+                        chiefBalance: null,
+                        linkedMkrBalance: null,
+                        linkedChiefBalance: null,
+                        proxyChiefBalance: null,
                         total: total,
                       });
 
-                    case 12:
+                    case 6:
                     case 'end':
                       return _context10.stop();
                   }

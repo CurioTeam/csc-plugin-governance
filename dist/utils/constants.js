@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
-exports.MAINNET_URL = exports.STAGING_MAINNET_URL = exports.KOVAN_URL = exports.LOCAL_URL = exports.ZERO_ADDRESS = exports.PAUSE = exports.END = exports.ESM = exports.CHIEF = exports.BATCH_POLLING = exports.POLLING = exports.VOTE_PROXY_FACTORY = exports.IOU = exports.MKR = void 0;
+exports.STAGING_MAINNET_URL = exports.STAGING_KOVAN_URL = exports.MAINNET_URL = exports.KOVAN_URL = exports.LOCAL_URL = exports.ZERO_ADDRESS = exports.PAUSE = exports.END = exports.ESM = exports.CHIEF = exports.BATCH_POLLING = exports.POLLING = exports.VOTE_PROXY_FACTORY = exports.IOU = exports.MKR = void 0;
 
 var _currency = require('@makerdao/currency');
 
@@ -37,9 +37,9 @@ var LOCAL_URL = 'http://localhost:3001/v1';
 exports.LOCAL_URL = LOCAL_URL;
 var KOVAN_URL = 'https://api.stablecoin-app.curioinvest.com/api/v1';
 exports.KOVAN_URL = KOVAN_URL;
+var MAINNET_URL = 'https://api.stablecoin-app.curioinvest.com/api/v1';
+exports.MAINNET_URL = MAINNET_URL;
 var STAGING_KOVAN_URL = 'https://csc-gov-api.curiocar.xyz/api/v1';
 exports.STAGING_KOVAN_URL = STAGING_KOVAN_URL;
 var STAGING_MAINNET_URL = 'https://csc-gov-api.curiocar.xyz/api/v1';
 exports.STAGING_MAINNET_URL = STAGING_MAINNET_URL;
-var MAINNET_URL = 'https://api.stablecoin-app.curioinvest.com/api/v1';
-exports.MAINNET_URL = MAINNET_URL;

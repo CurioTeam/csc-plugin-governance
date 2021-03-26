@@ -36,6 +36,24 @@ var ApproveLinkTransaction = /*#__PURE__*/ (function () {
 
   (0, _createClass2['default'])(ApproveLinkTransaction, [
     {
+      key: 'fees',
+      get: function get() {
+        return this._txMgr.getTransaction(this.promise).fees();
+      },
+    },
+    {
+      key: 'timeStamp',
+      get: function get() {
+        return this._txMgr.getTransaction(this.promise).timeStamp();
+      },
+    },
+    {
+      key: 'timeStampSubmitted',
+      get: function get() {
+        return this._txMgr.getTransaction(this.promise).timeStampSubmitted();
+      },
+    },
+    {
       key: 'build',
       value: function build(method, args) {
         var _this = this;
@@ -102,24 +120,6 @@ var ApproveLinkTransaction = /*#__PURE__*/ (function () {
           receiptEvent[0].data
         );
         this.proxyAddress = parsedLog['voteProxy'];
-      },
-    },
-    {
-      key: 'fees',
-      get: function get() {
-        return this._txMgr.getTransaction(this.promise).fees();
-      },
-    },
-    {
-      key: 'timeStamp',
-      get: function get() {
-        return this._txMgr.getTransaction(this.promise).timeStamp();
-      },
-    },
-    {
-      key: 'timeStampSubmitted',
-      get: function get() {
-        return this._txMgr.getTransaction(this.promise).timeStampSubmitted();
       },
     },
   ]);

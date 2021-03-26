@@ -7,12 +7,12 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = void 0;
 
-var _slicedToArray2 = _interopRequireDefault(
-  require('@babel/runtime/helpers/slicedToArray')
-);
-
 var _regenerator = _interopRequireDefault(
   require('@babel/runtime/regenerator')
+);
+
+var _slicedToArray2 = _interopRequireDefault(
+  require('@babel/runtime/helpers/slicedToArray')
 );
 
 var _asyncToGenerator2 = _interopRequireDefault(
@@ -59,7 +59,7 @@ var _helpers = require('./utils/helpers');
 
 function _createSuper(Derived) {
   var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function () {
+  return function _createSuperInternal() {
     var Super = (0, _getPrototypeOf2['default'])(Derived),
       result;
     if (hasNativeReflectConstruct) {
@@ -77,7 +77,9 @@ function _isNativeReflectConstruct() {
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === 'function') return true;
   try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    Boolean.prototype.valueOf.call(
+      Reflect.construct(Boolean, [], function () {})
+    );
     return true;
   } catch (e) {
     return false;
