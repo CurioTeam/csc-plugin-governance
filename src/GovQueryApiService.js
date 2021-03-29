@@ -60,6 +60,7 @@ export default class QueryApi extends PublicService {
           endDate
           multiHash
           url
+          active
         }
       }
     }`;
