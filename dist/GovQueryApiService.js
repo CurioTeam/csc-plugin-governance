@@ -269,7 +269,7 @@ var QueryApi = /*#__PURE__*/ (function (_PublicService) {
                   switch ((_context3.prev = _context3.next)) {
                     case 0:
                       query =
-                        '{activePolls {\n      nodes {\n          creator\n          pollId\n          blockCreated\n          startDate\n          endDate\n          multiHash\n          url\n        }\n      }\n    }';
+                        '{activePolls {\n      nodes {\n          creator\n          pollId\n          blockCreated\n          startDate\n          endDate\n          multiHash\n          url\n          active\n        }\n      }\n    }';
                       _context3.next = 3;
                       return this.getQueryResponse(this.serverUrl, query);
 
