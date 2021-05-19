@@ -49,10 +49,11 @@ function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly)
+    if (enumerableOnly) {
       symbols = symbols.filter(function (sym) {
         return Object.getOwnPropertyDescriptor(object, sym).enumerable;
       });
+    }
     keys.push.apply(keys, symbols);
   }
   return keys;
@@ -361,12 +362,13 @@ var QueryApi = /*#__PURE__*/ (function (_PublicService) {
                 while (1) {
                   switch ((_context5.prev = _context5.next)) {
                     case 0:
-                      query = '{totalMkrWeightProxyAndNoProxyByAddressAtTime(argAddress: "'
-                        .concat(address, '", argUnix: ')
-                        .concat(
-                          unixTime,
-                          '){\n      nodes {\n        address\n        weight\n      }\n    }\n    }'
-                        );
+                      query =
+                        '{totalMkrWeightProxyAndNoProxyByAddressAtTime(argAddress: "'
+                          .concat(address, '", argUnix: ')
+                          .concat(
+                            unixTime,
+                            '){\n      nodes {\n        address\n        weight\n      }\n    }\n    }'
+                          );
                       _context5.next = 3;
                       return this.getQueryResponse(this.serverUrl, query);
 
