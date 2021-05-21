@@ -5,14 +5,7 @@ var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
-exports.fromBuffer =
-  exports.toBuffer =
-  exports.paddedArray =
-  exports.getCurrency =
-  exports.netIdtoSpockUrlStaging =
-  exports.netIdtoSpockUrl =
-  exports.netIdToName =
-    void 0;
+exports.fromBuffer = exports.toBuffer = exports.paddedArray = exports.getCurrency = exports.netIdtoSpockUrlStaging = exports.netIdtoSpockUrl = exports.netIdToName = void 0;
 
 var _toConsumableArray2 = _interopRequireDefault(
   require('@babel/runtime/helpers/toConsumableArray')

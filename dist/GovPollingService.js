@@ -57,11 +57,10 @@ function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) {
+    if (enumerableOnly)
       symbols = symbols.filter(function (sym) {
         return Object.getOwnPropertyDescriptor(object, sym).enumerable;
       });
-    }
     keys.push.apply(keys, symbols);
   }
   return keys;
@@ -1035,11 +1034,13 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
 
                         votesToBeMoved.forEach(function (vote) {
                           var prevChoice = votes[vote.index].choice;
-                          votes[vote.index].choice =
-                            votes[vote.index].ballot.pop();
+                          votes[vote.index].choice = votes[
+                            vote.index
+                          ].ballot.pop();
                           if (!tally.options[votes[vote.index].choice])
-                            tally.options[votes[vote.index].choice] =
-                              _objectSpread({}, defaultOptionObj);
+                            tally.options[
+                              votes[vote.index].choice
+                            ] = _objectSpread({}, defaultOptionObj);
                           tally.options[votes[vote.index].choice].transfer = (0,
                           _bignumber['default'])(
                             tally.options[votes[vote.index].choice].transfer
@@ -1399,8 +1400,9 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
                           var option = parseInt(log.topics[3]);
                           var rankedChoiceOption = [];
                           if (option > 100)
-                            rankedChoiceOption =
-                              _this._decodeRankedChoiceOptions(log.topics[3]);
+                            rankedChoiceOption = _this._decodeRankedChoiceOptions(
+                              log.topics[3]
+                            );
                           polls.push({
                             pollId: parseInt(log.topics[2]),
                             option: option,

@@ -3,22 +3,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
-exports.STAGING_MAINNET_URL =
-  exports.STAGING_KOVAN_URL =
-  exports.MAINNET_URL =
-  exports.KOVAN_URL =
-  exports.LOCAL_URL =
-  exports.ZERO_ADDRESS =
-  exports.PAUSE =
-  exports.END =
-  exports.ESM =
-  exports.CHIEF =
-  exports.BATCH_POLLING =
-  exports.POLLING =
-  exports.VOTE_PROXY_FACTORY =
-  exports.IOU =
-  exports.MKR =
-    void 0;
+exports.STAGING_MAINNET_URL = exports.STAGING_KOVAN_URL = exports.MAINNET_URL = exports.KOVAN_URL = exports.LOCAL_URL = exports.ZERO_ADDRESS = exports.PAUSE = exports.END = exports.ESM = exports.CHIEF = exports.BATCH_POLLING = exports.POLLING = exports.VOTE_PROXY_FACTORY = exports.IOU = exports.MKR = void 0;
 
 var _currency = require('@makerdao/currency');
 

@@ -60,9 +60,8 @@ var _contractInfo = _interopRequireDefault(
 );
 
 function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it =
-    (typeof Symbol !== 'undefined' && o[Symbol.iterator]) || o['@@iterator'];
-  if (!it) {
+  var it;
+  if (typeof Symbol === 'undefined' || o[Symbol.iterator] == null) {
     if (
       Array.isArray(o) ||
       (it = _unsupportedIterableToArray(o)) ||
@@ -92,7 +91,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
     err;
   return {
     s: function s() {
-      it = it.call(o);
+      it = o[Symbol.iterator]();
     },
     n: function n() {
       var step = it.next();
@@ -135,11 +134,10 @@ function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) {
+    if (enumerableOnly)
       symbols = symbols.filter(function (sym) {
         return Object.getOwnPropertyDescriptor(object, sym).enumerable;
       });
-    }
     keys.push.apply(keys, symbols);
   }
   return keys;
