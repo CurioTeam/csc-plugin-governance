@@ -57,10 +57,11 @@ function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly)
+    if (enumerableOnly) {
       symbols = symbols.filter(function (sym) {
         return Object.getOwnPropertyDescriptor(object, sym).enumerable;
       });
+    }
     keys.push.apply(keys, symbols);
   }
   return keys;
@@ -678,53 +679,68 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
           /*#__PURE__*/ _regenerator['default'].mark(function _callee10(
             address
           ) {
-            var balancePromises, balances, total;
+            var _yield$this$get$getVo,
+              hasProxy,
+              voteProxy,
+              balancePromises,
+              otherAddress,
+              balances,
+              total;
+
             return _regenerator['default'].wrap(
               function _callee10$(_context10) {
                 while (1) {
                   switch ((_context10.prev = _context10.next)) {
                     case 0:
-                      // const { hasProxy, voteProxy } = await this.get('voteProxy').getVoteProxy(
-                      //   address
-                      // );
+                      _context10.next = 2;
+                      return this.get('voteProxy').getVoteProxy(address);
+
+                    case 2:
+                      _yield$this$get$getVo = _context10.sent;
+                      hasProxy = _yield$this$get$getVo.hasProxy;
+                      voteProxy = _yield$this$get$getVo.voteProxy;
                       balancePromises = [
                         this.get('token')
                           .getToken(_constants.MKR)
-                          .balanceOf(address), // this.get('chief').getNumDeposits(address),
-                      ]; // if (hasProxy) {
-                      //   const otherAddress =
-                      //     address.toLowerCase() === voteProxy.getHotAddress().toLowerCase()
-                      //       ? voteProxy.getColdAddress()
-                      //       : voteProxy.getHotAddress();
-                      //   balancePromises = balancePromises.concat([
-                      //     this.get('token').getToken(MKR).balanceOf(otherAddress),
-                      //     this.get('chief').getNumDeposits(otherAddress),
-                      //     this.get('chief').getNumDeposits(voteProxy.getProxyAddress()),
-                      //   ]);
-                      // }
+                          .balanceOf(address),
+                        this.get('chief').getNumDeposits(address),
+                      ];
 
-                      _context10.next = 3;
+                      if (hasProxy) {
+                        otherAddress =
+                          address.toLowerCase() ===
+                          voteProxy.getHotAddress().toLowerCase()
+                            ? voteProxy.getColdAddress()
+                            : voteProxy.getHotAddress();
+                        balancePromises = balancePromises.concat([
+                          this.get('token')
+                            .getToken(_constants.MKR)
+                            .balanceOf(otherAddress),
+                          this.get('chief').getNumDeposits(otherAddress),
+                          this.get('chief').getNumDeposits(
+                            voteProxy.getProxyAddress()
+                          ),
+                        ]);
+                      }
+
+                      _context10.next = 9;
                       return Promise.all(balancePromises);
 
-                    case 3:
+                    case 9:
                       balances = _context10.sent;
                       total = balances.reduce(function (total, num) {
                         return total.plus(num);
                       }, (0, _constants.MKR)(0));
                       return _context10.abrupt('return', {
                         mkrBalance: balances[0],
-                        // chiefBalance: balances[1],
-                        // linkedMkrBalance: hasProxy ? balances[2] : null,
-                        // linkedChiefBalance: hasProxy ? balances[3] : null,
-                        // proxyChiefBalance: hasProxy ? balances[4] : null,
-                        chiefBalance: null,
-                        linkedMkrBalance: null,
-                        linkedChiefBalance: null,
-                        proxyChiefBalance: null,
+                        chiefBalance: balances[1],
+                        linkedMkrBalance: hasProxy ? balances[2] : null,
+                        linkedChiefBalance: hasProxy ? balances[3] : null,
+                        proxyChiefBalance: hasProxy ? balances[4] : null,
                         total: total,
                       });
 
-                    case 6:
+                    case 12:
                     case 'end':
                       return _context10.stop();
                   }
@@ -1019,13 +1035,11 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
 
                         votesToBeMoved.forEach(function (vote) {
                           var prevChoice = votes[vote.index].choice;
-                          votes[vote.index].choice = votes[
-                            vote.index
-                          ].ballot.pop();
+                          votes[vote.index].choice =
+                            votes[vote.index].ballot.pop();
                           if (!tally.options[votes[vote.index].choice])
-                            tally.options[
-                              votes[vote.index].choice
-                            ] = _objectSpread({}, defaultOptionObj);
+                            tally.options[votes[vote.index].choice] =
+                              _objectSpread({}, defaultOptionObj);
                           tally.options[votes[vote.index].choice].transfer = (0,
                           _bignumber['default'])(
                             tally.options[votes[vote.index].choice].transfer
@@ -1385,9 +1399,8 @@ var GovPollingService = /*#__PURE__*/ (function (_PrivateService) {
                           var option = parseInt(log.topics[3]);
                           var rankedChoiceOption = [];
                           if (option > 100)
-                            rankedChoiceOption = _this._decodeRankedChoiceOptions(
-                              log.topics[3]
-                            );
+                            rankedChoiceOption =
+                              _this._decodeRankedChoiceOptions(log.topics[3]);
                           polls.push({
                             pollId: parseInt(log.topics[2]),
                             option: option,
